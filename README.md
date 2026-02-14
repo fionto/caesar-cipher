@@ -1,8 +1,8 @@
 # 🔐 Caesar Cipher in Python
 
-Un piccolo progetto, semplice ma fondamentale: implementare il **cifrario di Cesare** in Python per esercitarmi con stringhe, cicli, funzioni e logica modulare.
+Questo repository ospita un'implementazione del Cifrario di Cesare, uno dei più antichi e semplici algoritmi di cifratura per sostituzione. Il progetto non nasce solo come strumento crittografico, ma come diario di apprendimento per esplorare le potenzialità delle strutture dati di Python e l'organizzazione del codice in ottica modulare.
 
-Questo repository non nasce per creare un sistema sicuro, ma per documentare il mio percorso di apprendimento e costruire basi solide attraverso un problema classico, elegante nella sua semplicità.
+L'obiettivo principale è documentare l'evoluzione da uno script procedurale di base a una soluzione ottimizzata, sicura e tipizzata.
 
 ---
 
@@ -25,29 +25,37 @@ Storicamente, veniva applicato solo alle lettere dell’alfabeto latino. Numeri,
 
 ---
 
-## 🛠 Scelte implementative
+## 🛠️ Scelte implementative
 
-In questa versione (v1.0):
+Il cuore del progetto risiede nella gestione efficiente dell'alfabeto e nella separazione delle responsabilità. Invece di limitarsi a una stringa statica, il sistema costruisce dinamicamente i set di caratteri per garantire flessibilità.
 
-Il cifrario viene applicato solo alle lettere dell’alfabeto.
-Numeri, spazi e simboli vengono lasciati invariati, in linea con l’approccio storico.
+### 📂 v1.0 - Fondamenta e Logica di Base
 
-Il codice permette sia cifratura che decifratura, usando uno shift positivo o negativo.
-La logica di base è:
+Questa prima iterazione del progetto è in grado di processare stringhe alfanumeriche applicando una traslazione ciclica personalizzabile alle sole lettere, preservando al contempo la formattazione originale (spazi, simboli e distinzione tra maiuscole e minuscole).
 
-* convertire il carattere in numero
-* applicare lo shift
-* usare il modulo 26 per rimanere nell’alfabeto
-* riconvertire in carattere
-
-La struttura è volutamente semplice, per mantenere chiara la trasformazione.
+* **Preservazione dei Simboli**: Il cifrario viene applicato esclusivamente alle lettere dell'alfabeto. Numeri, spazi e punteggiatura vengono lasciati invariati per mantenere la leggibilità della struttura del messaggio originale, in linea con l'approccio storico.
+* **Case Sensitivity**: Il sistema riconosce e mappa separatamente caratteri minuscoli e maiuscoli, evitando la perdita di informazioni stilistiche durante la cifratura.
 
 ---
 
-## 📚 Perché documentare questo progetto?
+## 🚀 Prossimi Passi (Roadmap)
 
-Perché imparare a programmare non significa solo scrivere codice, ma anche spiegare cosa si è fatto, perché lo si è fatto e cosa si è capito nel processo.
+L'evoluzione del progetto si articolerà su due binari paralleli: l'espansione delle capacità crittografiche e il raffinamento dell'architettura del codice.
 
-Questo repository è parte del mio percorso di crescita in Python.
-Ogni progetto è un passo. Anche quelli “semplici”.
+### 🧩 Ampliamento Funzionalità
 
+L'obiettivo è trasformare lo script v1.0 in un tool completo di manipolazione testuale, mantenendo l'approccio basato su mappature custom:
+
+1. **Modulo Bi-direzionale (Encode/Decode)**: Implementazione della logica di decifratura permettendo all'utente di scegliere la direzione dello shift, trasformando il sistema in uno strumento di comunicazione completo.
+2. **Offuscamento degli Spazi**: Evoluzione della versione storica per includere lo spazio nel set di caratteri mappati. Questo impedirà a un analista esterno di identificare la lunghezza delle parole, aumentando la sicurezza del messaggio.
+3. **Supporto Simboli e Punteggiatura**: Estensione dell'alfabeto a caratteri speciali (es. `-`, `!`, `?`) mantenendo il vincolo di **non utilizzare** `ord()` o `chr()`. La gestione avverrà esclusivamente tramite l'espansione delle tuple e dei dizionari di mappatura.
+4. **Keyword-based Caesar**: Introduzione di una "chiave" alfabetica per rimescolare l'alfabeto di partenza prima dello shift, rendendo la crittoanalisi per forza bruta molto più complessa rispetto al metodo tradizionale.
+
+### ⚙️ Miglioramento Tecnico
+
+Per gestire la crescente complessità, il codice evolverà verso standard industriali più elevati:
+
+* **Programmazione a Oggetti (OOP)**: Transizione verso una classe `CaesarCipher`. Questo permetterà di incapsulare l'alfabeto e la logica di shift all'interno di un oggetto, facilitando la gestione di stati diversi (es. due cifrari con alfabeti diversi che lavorano contemporaneamente).
+* **Gestione degli Errori (Exception Handling)**: Introduzione di blocchi `try-except` per gestire input non validi o shift non numerici, garantendo che il programma non si interrompa bruscamente.
+* **Interfaccia CLI (Command Line Interface)**: Utilizzo del modulo `argparse` per permettere l'utilizzo dello script direttamente dal terminale, passando messaggio e shift come parametri di lancio.
+* **Unit Testing**: Scrittura di test automatizzati per verificare che ogni modifica al codice non rompa le funzionalità preesistenti (regression testing).
