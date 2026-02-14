@@ -1,0 +1,11 @@
+# Ignora le cartelle di cache di Python
+__pycache__/
+*.py[cod]
+
+# Ignora cartelle di ambienti virtuali
+venv/
+env/
+
+# Ignora file di configurazione dell'IDE (es. VS Code o PyCharm)
+.vscode/
+.idea/
