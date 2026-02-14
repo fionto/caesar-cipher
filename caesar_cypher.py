@@ -2,7 +2,7 @@
 # PROGETTO: Caesar Cipher Evolution
 # OBIETTIVI DEL MODULO:
 # - Implementare un sistema di cifratura a scorrimento (Cifrario di Cesare).
-# - Gestire un set di caratteri estensibile (inclusi simboli speciali come '-').
+# - Gestire un set di caratteri estensibile (lettere, poi accentate, poi altre).
 # - Supportare dinamicamente la distinzione tra alfabeti minuscoli e maiuscoli.
 # - Ottimizzare il recupero degli indici tramite mappature (dictionary mapping).
 # - Garantire la circolarità dello shift tramite operatore modulo.
@@ -17,7 +17,7 @@ LETTERS = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
             )
 
 # INPUT: Per il momento il messaggio da testare è una semplice variabile
-messaggio = "Ave, Cesare!"
+messaggio = "Si vis pacem, para bellum"
 
 # Anche se la lista è "hardcoded" voglio una funzione che pulisca i doppioni
 # e crei la versione maiuscola appended.
@@ -76,7 +76,6 @@ def build_index_map(letters: tuple[str, ...]) -> dict[str, int]:
             - la chiave è la lettera
             - il valore è l'indice della prima occorrenza nella tupla
     """
-   
     index_map = {}
     
     for i, letter in enumerate(letters):
@@ -110,11 +109,7 @@ def shift_character(
 
     Returns:
         str: La lettera risultante dopo l'applicazione dello shift ciclico.    
-    char_index = index_map[letter]
-    shifted_index = (char_index + shift) % len(letters)
-    return letters[shifted_index]
     """
-
     char_index = index_map[letter]
     shifted_index = (char_index + shift) % len(letters)
     return letters[shifted_index]
